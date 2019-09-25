@@ -13,10 +13,20 @@ public class Main {
         Session session = sessionFactory.getCurrentSession();
 
         try {
-            System.out.println("connecting to db");
             Customers newCustomer = new Customers("israel", "akpan", LocalDate.of(2003,2,4), true);
             session.beginTransaction();
+            System.out.println(newCustomer);
             session.save(newCustomer);
+            session.getTransaction().commit();
+
+            System.out.println("______________________");
+
+            System.out.println("Obtaining student id: " + newCustomer.getId());
+            session = sessionFactory.getCurrentSession();
+            session.beginTransaction();
+
+            Customers storedCustomer = session.get(Customers.class, newCustomer.getId());
+            System.out.println("Get Complete: " + storedCustomer);
             session.getTransaction().commit();
             System.out.println("connected successfully");
         } catch (Exception e) {

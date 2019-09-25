@@ -27,6 +27,8 @@
         <property name="format_sql">true</property>
 
         <mapping class="movies.models.Customers"/>
+        <mapping class="movies.models.Instructor"/>
+        <mapping class="movies.models.InstructorDetails"/>
 
         <!-- Drop and re-create the database schema on startup -->
 <!--        <property name="hbm2ddl.auto">update</property>-->
