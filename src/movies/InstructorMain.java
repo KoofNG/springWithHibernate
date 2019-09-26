@@ -12,14 +12,14 @@ public class InstructorMain {
         Session session = sessionFactory.getCurrentSession();
 
         try{
-            Instructor popoola = new Instructor("Joshua", "Popoola", "jjpopola@futa.edu.ng", 56);
-            InstructorDetails popChannels = new InstructorDetails("Circuit Analysis", "Teaching and Preaching");
+            Instructor instructor = new Instructor("Dapo", "Adeniji", "abne@gmail.com", 25);
+            InstructorDetails instructorChannels = new InstructorDetails("More Gospel", "Reading and Programming");
 
-            popoola.setInstructorDetailId(popChannels);
-
+            instructor.setInstructorDetailId(instructorChannels);
             session.beginTransaction();
-            System.out.println("Saving instructor: " + popoola);
-            session.save(popoola);
+            System.out.println("Saving instructorDetails: " + instructor);
+            session.save(instructor);
+            System.out.println("Saving instructorDetails: " + instructor);
             session.getTransaction().commit();
             System.out.println("Done!");
         } catch (Exception e) {

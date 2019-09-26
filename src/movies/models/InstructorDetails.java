@@ -17,6 +17,9 @@ public class InstructorDetails {
     @Column(name = "hobby")
     private String hobby;
 
+    @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
+    private Instructor instructor;
+
     public InstructorDetails(){}
 
     public InstructorDetails(String youtubeChannel, String hobby) {
@@ -26,6 +29,10 @@ public class InstructorDetails {
 
     public int getId() {
         return id;
+    }
+
+    public Instructor getInstructor() {
+        return instructor;
     }
 
     public String getYoutubeChannel() {
@@ -48,9 +55,14 @@ public class InstructorDetails {
         this.youtubeChannel = youtubeChannel;
     }
 
+    public void setInstructor(Instructor instructor) {
+        System.out.println("Instructor-> " + instructor);
+        this.instructor = instructor;
+    }
+
     @Override
     public String toString() {
-        return "Instructor Details [id=" + id + ", youtubeChannel=" + youtubeChannel + ", hobby=" + hobby + "]";
+        return "Instructor-Details [id=" + id + ", youtubeChannel=" + youtubeChannel + ", hobby=" + hobby + ", instructor=" + instructor + "]";
 
     }
 }
