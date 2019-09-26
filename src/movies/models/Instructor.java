@@ -1,6 +1,8 @@
 package movies.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "instructor")
@@ -26,6 +28,9 @@ public class Instructor {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "instructor_details_id")
     private InstructorDetails instructorDetail;
+
+    @OneToMany(mappedBy = "instructor")
+    private List<Course> courses;
 
     public Instructor() {}
 
@@ -61,6 +66,10 @@ public class Instructor {
         return instructorDetail;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
     //Setters
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -86,9 +95,20 @@ public class Instructor {
         this.instructorDetail = instructorDetail;
     }
 
+    public void setCourses(List<Course> courses) {
+        this.courses = courses;
+    }
+
     @Override
     public String toString() {
         return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", age=" + age + ", InstructorDetails=" + instructorDetail + "]";
+    }
 
+    public void add(Course tempCourse) {
+        if (courses == null) {
+            courses =   new ArrayList<Course>();
+        }
+        courses.add(tempCourse);
+        tempCourse.setInstructor(this);
     }
 }

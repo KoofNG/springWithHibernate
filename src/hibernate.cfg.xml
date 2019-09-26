@@ -29,6 +29,7 @@
         <mapping class="movies.models.Customers"/>
         <mapping class="movies.models.Instructor"/>
         <mapping class="movies.models.InstructorDetails"/>
+        <mapping class="movies.models.Course"/>
 
         <!-- Drop and re-create the database schema on startup -->
 <!--        <property name="hbm2ddl.auto">update</property>-->

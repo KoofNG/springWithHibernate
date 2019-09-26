@@ -1,10 +1,14 @@
 package movies;
 
+import movies.models.Course;
 import movies.models.Instructor;
 import movies.models.InstructorDetails;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class InstructorMain {
     public static void main(String[] args) {
@@ -12,18 +16,20 @@ public class InstructorMain {
         Session session = sessionFactory.getCurrentSession();
 
         try{
-            Instructor instructor = new Instructor("Dapo", "Adeniji", "abne@gmail.com", 25);
-            InstructorDetails instructorChannels = new InstructorDetails("More Gospel", "Reading and Programming");
-
-            instructor.setInstructorDetailId(instructorChannels);
+            int theID = 15;
             session.beginTransaction();
-            System.out.println("Saving instructorDetails: " + instructor);
-            session.save(instructor);
-            System.out.println("Saving instructorDetails: " + instructor);
+
+            Instructor tempInstructor = session.get(Instructor.class, theID);
+            List<Course> coursesList = tempInstructor.getCourses();
+
+            for (Course e: coursesList) {
+                System.out.println(e.getId() + " " + e.getTitle() + " " );
+            }
             session.getTransaction().commit();
-            System.out.println("Done!");
         } catch (Exception e) {
                 e.printStackTrace();
+        } finally {
+            session.close();
         }
     }
 }
